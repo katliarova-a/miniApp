@@ -12,13 +12,31 @@
     <meta charset="UTF-8">
     <title>Котики в коробках</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         canvas {
             border: 2px solid black;
             background-color: #f5f5dc;
         }
+        body{
+            height: 100vh;
+        }
+        #scorepanel{
+            padding: 50px auto;
+            background-color: bisque;
+            display: flex;
+            justify-content: space-around;
+        }
+        
     </style>
 </head>
 <body>
+    <div id="scorepanel">
+        <p id="score"></p>
+        <p id="scoreRate"></p>
+    </div>
     <canvas id="gameCanvas" width="400" height="300"></canvas>
     <script src="script.js">
         
