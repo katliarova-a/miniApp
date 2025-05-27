@@ -1,14 +1,18 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width=400;
-canvas.height=300;
+canvas.width = window.innerWidth - 20; 
+
 
 const gridRows = 3, gridCols = 4;
-const cellSize = 100;
+const cellSize = canvas.width / gridCols; 
+canvas.height=cellSize*3;
 let gameState = Array(gridRows * gridCols).fill(null);
 let draggingCat = null, dragStartIndex = null;
 dragX = 0, dragY = 0;
 let isDragging = false;
+
+let score = 0;
+let scoreRate = 5; // Начальная скорость начисления очков
 
 
 function getFreePosition() {
@@ -36,17 +40,29 @@ function drawGame() {
         ctx.fillStyle = "#fff";
         ctx.fillRect(x, y, cellSize, cellSize);
         ctx.strokeRect(x, y, cellSize, cellSize);
-        
+
         if (gameState[i]) {
             if (gameState[i].type === "box") ctx.fillStyle = "brown";
             else if (gameState[i].type === "cat") ctx.fillStyle = "gray";
             
-            ctx.fillRect(x + 10, y + 10, 80, 80);
+            let catSize = cellSize * 0.5; // Размер котика динамический, в пределах клетки
+            let catX = x + (cellSize - catSize) / 2;
+            let catY = y + (cellSize - catSize) / 2;
+            
+            ctx.fillRect(catX, catY, catSize, catSize);
             if (gameState[i].type === "cat") {
                 ctx.fillStyle = "black";
-                ctx.fillText(`Lv ${gameState[i].level}`, x + 30, y + 50);
+                ctx.fillText(`Lv ${gameState[i].level}`, catX + catSize / 3, catY + catSize / 2);
             }
         }
+    }
+
+    if (draggingCat) {
+        let catSize = cellSize * 0.5;
+        ctx.fillStyle = "gray";
+        ctx.fillRect(dragX - catSize / 2, dragY - catSize / 2, catSize, catSize);
+        ctx.fillStyle = "black";
+        ctx.fillText(`Lv ${draggingCat.level}`, dragX - catSize / 3, dragY);
     }
 }
 
@@ -85,10 +101,17 @@ function endDrag(event) {
         let y = event.offsetY || event.changedTouches[0].clientY - canvas.offsetTop;
         let index = getCellIndex(x, y);
 
-        if (index !== dragStartIndex && gameState[index]?.type === "cat" && gameState[index].level === draggingCat.level) {
-            gameState[index].level++;
+        if (index !== dragStartIndex && gameState[index]?.type === "cat") {
+            if (gameState[index].level === draggingCat.level) {
+                // Уровни совпадают → объединяем котов
+                gameState[index].level++;
+            } else {
+                // Уровни не совпадают → возвращаем котика на место
+                gameState[dragStartIndex] = draggingCat;
+            }
         } else {
-            gameState[index] = draggingCat;
+            // Если просто перетащили на пустую клетку, возвращаем обратно
+            gameState[dragStartIndex] = draggingCat;
         }
 
         draggingCat = null;
@@ -141,5 +164,30 @@ function handleInteraction(event) {
 
 canvas.addEventListener("click", handleInteraction);
 canvas.addEventListener("touchstart", handleInteraction);
+const scorePanelText = document.getElementById("score");
+const scorePanelRate = document.getElementById("scoreRate");
+
+// Функция обновления счёта
+function updateScore() {
+    score += scoreRate;
+    scorePanelText.innerText = `Очки: ${score}`;
+    scorePanelRate.innerText = `Заработок: ${scoreRate}`;
+}
+
+// Определяем максимальный уровень котиков на поле
+function updateScoreRate() {
+    scoreRate = 1;
+    gameState.forEach(cell => {
+        if (cell?.type === "cat") {
+            scoreRate += cell.level * 5; // Уровень котика × 5 очков
+        }
+    });
+}
+
+// Запускаем таймер начисления очков
+setInterval(() => {
+    updateScoreRate();
+    updateScore();
+}, 1000);
 
 drawGame();
