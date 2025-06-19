@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainScreen">
+         <div class="scorePanel">
+            <div class="topScorePanel">
+                <div class="energy">
+                    <img src="image/energy.svg">
+                    <div id="energyBox">
+                        <div id="energyFill"></div>
+                        <span id="energyText">500</span>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <img src="image/ticket.svg">
+                    <div id="ticketBox">
+                        <div id="ticketFill"></div>
+                        <span id="ticketText">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scoreContainer">
+                <img src="image/icons8-coffee-beans-94.png">
+                <span id="coffeScore">0</span>
+            </div>
+            <div class="scoreInHour">
+                <p>+ <span  id="inHour">0</span> в час</p>
+            </div>
+        </div>
+        <div class="cardsPanel">
+            <div class="upgrade">
+                <p class="text">Прокачайся</p>
+                <div class="upgradeContainerCard">
+                    <div class="card">
+                        <div class="imageCardUpgrade">
+                            <div class="lvlCardUpgrade">
+                                <p> ур. <span id="lvlEnergy">0</span></p>
+                            </div>
+                        </div>
+                        <p class="textCardUpgrade">Запас энергии</p>
+                    </div>
+                    <div class="card">
+                        <div class="imageCardUpgrade">
+                            <div class="lvlCardUpgrade">
+                                <p> ур. <span id="lvlMultipress">0</span></p>
+                            </div>
+                        </div>
+                        <p class="textCardUpgrade">Мультипресс</p>
+                    </div>
+                    <div class="card">
+                        <div class="imageCardUpgrade">
+                            <div class="lvlCardUpgrade">
+                                <p> <span id="countRestart">0</span>/6</p>
+                            </div>
+                        </div>
+                        <p class="textCardUpgrade">Перезагрузка</p>
+                    </div>
+                </div>
+            </div>
+            <div class="passiveIncome"></div>
+        </div>
+        <div class="controlPanel">
+            <a href="index.html" class="hrefControl"><div class="buttonControl">
+                <img src="image/press.svg">
+                <p>Играть</p>
+            </div></a>
+            <a href="income.html" class="hrefControl"><div class="buttonControl">
+                <img src="image/icons8-coffee-beans-94.png">
+                <p class="active">Доход</p>
+            </div></a>
+            <a href="programmer.html" class="hrefControl"><div class="buttonControl">
+                <img src="image/command.svg">
+                <p>Разработчик</p>
+            </div></a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
