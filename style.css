@@ -182,6 +182,6 @@
     margin-top: 5px;
 }
 .card:nth-child(1) .imageCardUpgrade{
-    background-image: url(image/test/lvlEnergy.png);
+    background-image: url(image/lvlEnergy.png);
     background-size: cover;
 }
