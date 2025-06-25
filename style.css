@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.loadingScreen {
+    font-size: 39px;
+    width: 100%;
+    background-color: rgba(199, 143, 252, 0.808);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; display: flex; }
+    25% { opacity: 0.5; display: flex;}
+    50% { opacity: 1; display: flex; }
+    75% { opacity: 0.5; display: flex; }
+    100% { opacity: 1; display: none; }
+}
+
+.mainScreen{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 22% 66% 12%;
+    background-color: antiquewhite;
+}
+.controlPanel{
+    display: flex;
+    justify-content: center;
+}
+.hrefControl{
+    width: 25%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.buttonControl{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(251, 251, 251);
+    font-weight: 800;
+}
+.buttonControl img{
+    width: auto;
+    height: 60px;
+}
+.active{
+    color: rgb(104, 81, 4);
+    font-weight: 800;
+}
+.objectPanel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.objectPanel img{
+    width: 70%;
+}
+
+.programmerPanel{
+    padding: 20px;
+    text-align: center;
+    h2, p{
+        padding-bottom: 10px;
+    }
+    h3{
+        padding-bottom: 10px;
+        text-align: left;
+    }
+    background-color: rgba(216, 181, 249, 0.789);
+    box-shadow:  0 0 10px 4px rgba(63, 1, 120, 0.563);
+}
+.topScorePanel{
+    height: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.energy, .ticket{
+    height: 30%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img{
+        width: 50px;
+        /*rotate: 17deg;*/
+        position: relative;
+        left: 24px;
+        z-index: 10;
+    }
+    #energyBox, #ticketBox{
+        position: relative;
+         display: flex;
+        align-items: center; /* Центрирование по вертикали */
+        justify-content: center; /* Центрирование по горизонтали */
+        width: 100px;
+        border-radius:4px;
+        height: 20px;
+        font-size: 12px;
+        color: white;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: 1px;
+        background-color: gray;
+        /*transform: skewX(-17deg);*/
+    }
+}
+#energyFill {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius:4px;
+    transition: width 0.3s, background 0.3s;
+    background: linear-gradient(90deg,#0c4fdf 0%, #a9c3f1 100%);
+}
+#ticketFill{
+    position: absolute;
+    left: 0;
+    width: 5%;
+    height: 100%;
+    border-radius:4px;
+    transition: width 0.3s, background 0.3s;
+    background: linear-gradient(90deg,#A23D9B 0%, #cf8fce 100%);
+}
+#energyText, #ticketText {
+    position: relative;
+    z-index: 2; /* Число всегда сверху */
+    color: white;
+    font-size: 12px;
+}
+.scoreContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 50px;
+    }
+    font-size: 36px;
+    font-weight: 800;
+}
+.scoreInHour{
+    text-align: center;
+    color: rgb(232, 206, 11);
+    font-weight: 600;
+}
+.upgrade{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 40px;
+}
+.text{
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.upgradeContainerCard{
+    display: flex;
+    justify-content: space-between;
+}
+.card{
+    width: 28%;
+    height: 120px;
+    background-color: #cf8fce;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 5px;
+    color: white;
+}
+.imageCardUpgrade,.imageCardPassive{
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+}
+.lvlCardUpgrade{
+    background-color: rgba(128, 128, 128, 0.759);
+    width: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.card:nth-child(1) .imageCardUpgrade{
+    background-image: url(image/lvlEnergy.png);
+    background-size: cover;
+}
+.card:nth-child(2) .imageCardUpgrade{
+    background-image: url(image/lvlMultipress.png);
+    background-size: cover;
+}
+.card:nth-child(3) .imageCardUpgrade{
+    background-image: url(image/lvlRefresh.png);
+    background-size: cover;
+}
+.dialog{
+    position: fixed;
+    inset: auto 0 0 0; /* снизу */
+    width: calc(100% - 40px);
+    height: 70vh;
+    border: 0px;
+    border-radius: 12px 12px 0 0;
+    padding: 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    /*background: linear-gradient(180deg,#9c6616 0%, #cfb58f 100%);*/
+    form{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+::backdrop {
+  background: rgba(0, 0, 0, 0.519);
+}
+.closeButton{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    background-color: #a9c3f1;
+    border: 0px;
+    align-self: flex-end;
+}
+.pic{
+    width: 100%;
+    margin: 10px 0px;
+    border-radius: 12px;
+}
+.textContainer{
+    background-color:rgba(232, 206, 11, 0.816);
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: rgb(31, 31, 31);
+    margin: 10px 0px;
+    display: flex;
+    img{
+        margin-left: 10px;
+        width: 20px;
+    }
+}
+.pay{
+    width: 90%;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: rgb(36, 36, 37);
+    background-color: #a9edef;
+    font-weight: 600;
+}
+
+.cardPassive {
+	width: 28vw;
+	display: inline-block;
+}
+.passiveIncomeContainerCard {
+	white-space: nowrap;
+	overflow-x: auto;
+	width: calc(100vw - 40px);
+}
+.passiveIncomeContainerCard::-webkit-scrollbar {
+	/*Отключить скролл бар*/
+	display: none;
+}
+.textCardUpgrade{
+    text-align: center;
+}

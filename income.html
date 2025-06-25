@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainScreen">
+         <div class="scorePanel">
+            <div class="topScorePanel">
+                <div class="energy">
+                    <img src="image/energy.png">
+                    <div id="energyBox">
+                        <div id="energyFill"></div>
+                        <span id="energyText">500</span>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <img src="image/ticket.png">
+                    <div id="ticketBox">
+                        <div id="ticketFill"></div>
+                        <span id="ticketText">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scoreContainer">
+                <img src="image/coffe.png">
+                <span id="coffeScore">0</span>
+            </div>
+            <div class="scoreInHour">
+                <p>+ <span  id="inHour">0</span> в час</p>
+            </div>
+        </div>
+        <div class="cardsPanel">
+            <div class="upgrade">
+                <p class="text">Прокачайся</p>
+                <div class="upgradeContainerCard">
+                    <div class="card" id="clickLvlEnergy">
+                        <div class="imageCardUpgrade">
+                            <div class="lvlCardUpgrade">
+                                <p> ур. <span id="lvlEnergy" class="lvlEnergy">0</span></p>
+                            </div>
+                        </div>
+                        <p class="textCardUpgrade">Запас энергии</p>
+                    </div>
+                    <div class="card">
+                        <div class="imageCardUpgrade">
+                            <div class="lvlCardUpgrade">
+                                <p> ур. <span id="lvlMultipress">0</span></p>
+                            </div>
+                        </div>
+                        <p class="textCardUpgrade">Мультипресс</p>
+                    </div>
+                    <div class="card" id="clickCountRestart">
+                        <div class="imageCardUpgrade">
+                            <div class="lvlCardUpgrade">
+                                <p> <span class="countRestart">0</span>/6</p>
+                            </div>
+                        </div>
+                        <p class="textCardUpgrade">Перезагрузка</p>
+                    </div>
+                </div>
+            </div>
+            <div class="upgrade">
+                <p class="text">Пассивный доход</p>
+                <div class="passiveIncomeContainerCard">
+                    <div class="card cardPassive" data-id="1"></div>
+                    <div class="card cardPassive" data-id="2"></div>
+                    <div class="card cardPassive" data-id="3"></div>
+                    <div class="card cardPassive" data-id="4"></div>
+                    <div class="card cardPassive" data-id="5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="controlPanel">
+            <a href="index.html" class="hrefControl"><div class="buttonControl">
+                <img src="image/press.png">
+                <p>Играть</p>
+            </div></a>
+            <a href="income.html" class="hrefControl"><div class="buttonControl">
+                <img src="image/coffe.png">
+                <p class="active">Доход</p>
+            </div></a>
+            <a href="programmer.html" class="hrefControl"><div class="buttonControl">
+                <img src="image/command.png">
+                <p>Разработчик</p>
+            </div></a>
+        </div>
+    </div>
+    <dialog id="screenLvlEnergy" class="dialog">
+        <form method="dialog">
+            <button class="closeButton" aria-label="Закрыть окно">✖</button>
+            <img src="image/lvlEnergy.png" class="pic">
+            <h2>Запас энергии</h2>
+            <div class="textContainer">
+                <p>ур. <span class="lvlEnergy">0</span></p>
+                <img src="image/energy.png">
+                <p>+ <span id="countLvlEnergy">100</span> к запасу энергии</p>
+            </div>
+            <button id="payLvlEnergy" class="pay"><p>Купить за <span id="priceLvlEnergy">100</span></p> </button>
+            
+        </form>
+    </dialog>
+    <dialog id="screenCountRestart" class="dialog">
+        <form method="dialog">
+            <button class="closeButton" aria-label="Закрыть окно">✖</button>
+            <img src="image/lvlMultipress.png" class="pic">
+            <h2>Перезагрузка</h2>
+            <div class="textContainer">
+                <p>ур. <span class="countRestart">0</span></p>
+                <img src="image/energy.png">
+                <p>Полностью восстанавливает энергию</p>
+            </div>
+            <button id="payCountRestart" class="pay"><p class="textTimeRestart">Бесплатно</p> </button>
+        </form>
+    </dialog>
+    <dialog id="screenLvlPassive" class="dialog"></dialog>
+    <script src="script.js"></script>
+</body>
+</html>
